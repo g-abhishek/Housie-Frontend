@@ -12,7 +12,7 @@ export default function Login() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        axios.post(`http://localhost:3001/admin/login`, 
+        axios.post(`https://housie-backend.herokuapp.com/admin/login`, 
             {
                 email: email,
                 password: password

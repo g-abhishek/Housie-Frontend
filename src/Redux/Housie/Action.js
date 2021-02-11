@@ -73,7 +73,7 @@ export const fhWinnerData = (data) => {
 
 export const fetchWinners = (gid) => {
     return (dispatch) => {
-        axios.get(`http://localhost:3001/admin/game/winner/all/${gid}`, {
+        axios.get(`https://housie-backend.herokuapp.com/admin/game/winner/all/${gid}`, {
             headers: {
                 'Authorization' : `Bearer ${localStorage.getItem("tokn")}`
             }
@@ -122,7 +122,7 @@ export const fetchWinners = (gid) => {
 
 
 // const fetchWinners = () => {
-//     axios.get(`http://localhost:3001/admin/game/winner/all/`, {
+//     axios.get(`https://housie-backend.herokuapp.com/admin/game/winner/all/`, {
 //         headers: {
 //             'Authorization': `Bearer ${localStorage.getItem("tokn")}`
 //         }

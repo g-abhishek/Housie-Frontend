@@ -40,7 +40,7 @@ class ShowAllGames extends Component {
                     cancelButtonText: 'Cancel'
                 }).then((result) => {
                     if (result.value) {
-                        axios.put(`http://localhost:3001/admin/game/stop/`, {
+                        axios.put(`https://housie-backend.herokuapp.com/admin/game/stop/`, {
                             gid: this.props.gameData.gameId
                         }, {
                             headers: {
@@ -129,7 +129,7 @@ class ShowAllGames extends Component {
                 }).then((result) => {
                     if (result.value) {
 
-                        axios.put(`http://localhost:3001/admin/game/stop/`, {
+                        axios.put(`https://housie-backend.herokuapp.com/admin/game/stop/`, {
                             gid: this.props.gameData.gameId
                         }, {
                             headers: {
@@ -221,7 +221,7 @@ class ShowAllGames extends Component {
         let body = {
             gid: data.gameId
         }
-        axios.put(`http://localhost:3001/admin/game/start/`, body, {
+        axios.put(`https://housie-backend.herokuapp.com/admin/game/start/`, body, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('tokn')}`
             }
@@ -301,7 +301,7 @@ class ShowAllGames extends Component {
     }
 
     fetchPaginatedGame = (pageNum = 1) => {
-        axios.get(`http://localhost:3001/admin/game/paginated/?page=${pageNum}&items=${this.state.numOfItems}`, {
+        axios.get(`https://housie-backend.herokuapp.com/admin/game/paginated/?page=${pageNum}&items=${this.state.numOfItems}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("tokn")}`
             }

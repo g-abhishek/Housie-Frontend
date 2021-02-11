@@ -27,7 +27,7 @@ class ShowTable extends Component{
     }
     fetchCompletedUsers = () => {
 
-        axios.get(`http://localhost:3001/admin/game/${this.props.type}/${this.props.gameId}`, {
+        axios.get(`https://housie-backend.herokuapp.com/admin/game/${this.props.type}/${this.props.gameId}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("tokn")}`
             }
@@ -104,7 +104,7 @@ class ShowTable extends Component{
         }).then((result) => {
             if (result.value) {
 
-                axios.put(`http://localhost:3001/admin/game/winner/${this.props.type}`, body,
+                axios.put(`https://housie-backend.herokuapp.com/admin/game/winner/${this.props.type}`, body,
                     {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem("tokn")}`
@@ -258,7 +258,7 @@ class ShowTable extends Component{
 
 //     const fetchCompletedUsers = () => {
 
-//         axios.get(`http://localhost:3001/admin/game/${props.type}/${props.gameId}`, {
+//         axios.get(`https://housie-backend.herokuapp.com/admin/game/${props.type}/${props.gameId}`, {
 //             headers: {
 //                 'Authorization': `Bearer ${localStorage.getItem("tokn")}`
 //             }
@@ -335,7 +335,7 @@ class ShowTable extends Component{
 //         }).then((result) => {
 //             if (result.value) {
 
-//                 axios.put(`http://localhost:3001/admin/game/winner/${type}`, body,
+//                 axios.put(`https://housie-backend.herokuapp.com/admin/game/winner/${type}`, body,
 //                     {
 //                         headers: {
 //                             'Authorization': `Bearer ${localStorage.getItem("tokn")}`

@@ -14,7 +14,7 @@ export default function UserRegistration() {
     const onSubmit = (data) => {
 
         console.log(data)
-        axios.post(`http://localhost:3001/user/registration`, data).then(response => {
+        axios.post(`https://housie-backend.herokuapp.com/user/registration`, data).then(response => {
             console.log(response)
 
             // alert("Created")

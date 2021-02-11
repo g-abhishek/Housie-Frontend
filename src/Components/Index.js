@@ -33,7 +33,7 @@ class Index extends Component {
 
     fetchOngoingGame = () => {
 
-        axios.get(`http://localhost:3001/admin/game/ongoing/`,
+        axios.get(`https://housie-backend.herokuapp.com/admin/game/ongoing/`,
             {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("tokn")}`
@@ -51,7 +51,7 @@ class Index extends Component {
 
     handleButtonClick = (num) => {
 
-        axios.post(`http://localhost:3001/admin/game/appeared/`, {
+        axios.post(`https://housie-backend.herokuapp.com/admin/game/appeared/`, {
             gid: this.props.gameData.gameId,
             num: num
         },
