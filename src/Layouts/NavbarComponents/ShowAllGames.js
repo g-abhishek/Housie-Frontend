@@ -7,6 +7,7 @@ import { selectGame, fetchWinners } from '../../Redux/Housie/Action'
 import Swal from 'sweetalert2'
 import { store } from 'react-notifications-component'
 import Pagination from 'react-js-pagination'
+import { ClipLoader } from 'react-spinners'
 
 
 class ShowAllGames extends Component {
@@ -383,7 +384,15 @@ class ShowAllGames extends Component {
                             onChange={(val)=> this.handlePagination(val)}
                         />
                     </div>
-                    : <></>}
+                    : 
+                    <div className="sweet-loading text-center">
+                            <ClipLoader 
+                                size={40}
+                                color={"#fff"}
+                                loading={true}
+                            />
+                    </div>
+                    }
             </React.Fragment>
         )
     }

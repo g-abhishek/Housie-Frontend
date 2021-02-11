@@ -80,7 +80,7 @@ export default function UserRegistration() {
                             <h2>Registration</h2>
                             <p>Welcome to housie game.</p>
                             {isRegistrationSuccess ?
-                                <Alert>Regsitration Successfull</Alert>
+                                <Alert>Regsitration successfull, please use whatsapp to play the game</Alert>
                                 :
                                 <Form onSubmit={handleSubmit(onSubmit)}>
                                     <Row>

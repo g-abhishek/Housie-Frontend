@@ -21,6 +21,7 @@ class Index extends Component {
             fullHousie: [],
             isDataReturned: false,
             tableComponent: "topLine",
+            refresher: 0
         }
     }
 
@@ -76,6 +77,9 @@ class Index extends Component {
                     });
                 }
                 if (response.data.statusCode === 200) {
+                    this.setState({
+                        refresher: this.state.refresher+1
+                    })
                     this.props.selectNumber(num)
                 }
             }).catch(error => {
@@ -183,16 +187,16 @@ class Index extends Component {
                                     <Row>
                                         <Col md={7} className="text-left">
                                             {this.state.tableComponent === "topLine" ?
-                                                <ShowTable type={"topLine"} gameId={this.props.gameData.gameId} />
+                                                <ShowTable type={"topLine"} gameId={this.props.gameData.gameId} refresher={this.state.refresher} />
                                                 : <></>}
                                             {this.state.tableComponent === "middleLine" ?
-                                                <ShowTable type={"middleLine"} gameId={this.props.gameData.gameId} />
+                                                <ShowTable type={"middleLine"} gameId={this.props.gameData.gameId} refresher={this.state.refresher} />
                                                 : <></>}
                                             {this.state.tableComponent === "bottomLine" ?
-                                                <ShowTable type={"bottomLine"} gameId={this.props.gameData.gameId} />
+                                                <ShowTable type={"bottomLine"} gameId={this.props.gameData.gameId} refresher={this.state.refresher} />
                                                 : <></>}
                                             {this.state.tableComponent === "fullHousie" ?
-                                                <ShowTable type={"fullHousie"} gameId={this.props.gameData.gameId} />
+                                                <ShowTable type={"fullHousie"} gameId={this.props.gameData.gameId} refresher={this.state.refresher} />
                                                 : <></>}
                                             
                                         </Col>
