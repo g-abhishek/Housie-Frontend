@@ -21,7 +21,6 @@ class Index extends Component {
             fullHousie: [],
             isDataReturned: false,
             tableComponent: "topLine",
-            refresher: 0
         }
     }
 
@@ -39,8 +38,9 @@ class Index extends Component {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("tokn")}`
                 }
-            }).then(response => {                
-                if (response.data.statusCode === 200) {
+            }).then(response => {   
+                console.log(response)             
+                if (response.data.statusCode === 200 && response.data.result) {
                     let data = response.data.result
                     this.props.selectGame(JSON.stringify({ gameId: data._id, gameName: data.name, gameDateTime: new Date(data.gameDate), numUsers: data.users, done: data.done, uniqueName: data.uniqueName }))
                     this.props.fetchWinners(data._id)
@@ -77,9 +77,6 @@ class Index extends Component {
                     });
                 }
                 if (response.data.statusCode === 200) {
-                    this.setState({
-                        refresher: this.state.refresher+1
-                    })
                     this.props.selectNumber(num)
                 }
             }).catch(error => {
@@ -187,16 +184,16 @@ class Index extends Component {
                                     <Row>
                                         <Col md={7} className="text-left">
                                             {this.state.tableComponent === "topLine" ?
-                                                <ShowTable type={"topLine"} gameId={this.props.gameData.gameId} refresher={this.state.refresher} />
+                                                <ShowTable type={"topLine"} gameId={this.props.gameData.gameId} />
                                                 : <></>}
                                             {this.state.tableComponent === "middleLine" ?
-                                                <ShowTable type={"middleLine"} gameId={this.props.gameData.gameId} refresher={this.state.refresher} />
+                                                <ShowTable type={"middleLine"} gameId={this.props.gameData.gameId} />
                                                 : <></>}
                                             {this.state.tableComponent === "bottomLine" ?
-                                                <ShowTable type={"bottomLine"} gameId={this.props.gameData.gameId} refresher={this.state.refresher} />
+                                                <ShowTable type={"bottomLine"} gameId={this.props.gameData.gameId} />
                                                 : <></>}
                                             {this.state.tableComponent === "fullHousie" ?
-                                                <ShowTable type={"fullHousie"} gameId={this.props.gameData.gameId} refresher={this.state.refresher} />
+                                                <ShowTable type={"fullHousie"} gameId={this.props.gameData.gameId} />
                                                 : <></>}
                                             
                                         </Col>
@@ -211,7 +208,7 @@ class Index extends Component {
                                                             <tr>
                                                                 <th>#</th>
                                                                 <th>Name</th>
-                                                                <th>Users</th>
+                                                                <th>Mobile</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -221,12 +218,12 @@ class Index extends Component {
                                                                 <td>{this.props.gameData.tLWinnerData !== "" ? this.props.gameData.tLWinnerData.mobile : ""}</td>
                                                             </tr>
                                                             <tr>
-                                                                <th scope="row">Bottom Line</th>
+                                                                <th scope="row">Middle Line</th>
                                                                 <td>{this.props.gameData.mLWinnerData !== "" ? this.props.gameData.mLWinnerData.name : ""}</td>
                                                                 <td>{this.props.gameData.mLWinnerData !== "" ? this.props.gameData.mLWinnerData.mobile : ""}</td>
                                                             </tr>
                                                             <tr>
-                                                                <th scope="row">Middle Line</th>
+                                                                <th scope="row">Bottom Line</th>
                                                                 <td>{this.props.gameData.bLWinnerData !== "" ? this.props.gameData.bLWinnerData.name : ""}</td>
                                                                 <td>{this.props.gameData.bLWinnerData !== "" ? this.props.gameData.bLWinnerData.mobile : ""}</td>
                                                             </tr>

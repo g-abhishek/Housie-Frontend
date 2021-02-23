@@ -9,8 +9,8 @@ export default function CreateGameForm(props){
     const { register, handleSubmit, errors } = useForm()
 
     const onSubmit = (data) => {
-        data.uniqueName = (new Date(`${data.date} ${data.time}`)).toString().replace(/\s/g, '').slice(0,14).toUpperCase()        
-        // data.gameDate = new Date(`${data.date} ${data.time}`).toISOString()        
+        data.uniqueName = (new Date(`${data.date} ${data.time}`)).toString().replace(/\s/g, '').slice(0,14).toUpperCase()       
+        data.gameDate = new Date(`${data.date} ${data.time}`)       
         console.log(data)
         axios.post(`https://housie-backend.herokuapp.com/admin/game/create`, data, {
             headers: {

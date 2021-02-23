@@ -16,6 +16,7 @@ class ShowTable extends Component{
         this.state = {
             completedUsers: [],
             isDataReturned: false,
+            fetchIntervalID: "",
             tLWinnerBtn: this.props.reduxData.tLWinnerData,
             mLWinnerBtn: this.props.reduxData.mLWinnerData !== "" ? true : false,
             bLWinnerBtn: this.props.reduxData.bLWinnerData !== "" ? true : false,
@@ -23,17 +24,18 @@ class ShowTable extends Component{
         }
     }
     
-    componentWillMount(){
-        this.fetchCompletedUsers()
+    componentWillMount(){        
+        var fetchIntervalID = setInterval(this.fetchCompletedUsers, 1000)
+        this.setState({
+            fetchIntervalID: fetchIntervalID
+        })
     }
-    componentDidUpdate(prevProps){
-        if(this.props.refresher !== prevProps.refresher){
-            this.fetchCompletedUsers()
-        }
+    componentWillUnmount(){
+        clearInterval(this.state.fetchIntervalID)
     }
 
     fetchCompletedUsers = () => {
-
+        console.log("fetchCompletedUsers")
         axios.get(`https://housie-backend.herokuapp.com/admin/game/${this.props.type}/${this.props.gameId}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("tokn")}`
